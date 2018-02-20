@@ -24,6 +24,13 @@ np.set_printoptions(precision=5, linewidth=110, suppress=True)
 from ipykernel.kernelapp import IPKernelApp
 def in_notebook(): return IPKernelApp.initialized()
 
+def in_ipynb():
+    try:
+        cls = get_ipython().__class__.__name__
+        return cls == 'ZMQInteractiveShell'
+    except NameError:
+        return False
+
 import tqdm as tq
 from tqdm import tqdm_notebook, tnrange
 
